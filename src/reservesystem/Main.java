@@ -5,6 +5,7 @@
 package reservesystem;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  *
@@ -17,10 +18,42 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         ReserveSystem reservesystem = new ReserveSystem();
-        
         reservesystem.loadReserves();
+
+        selectionMenu(reservesystem);
+
         //reservesystem.makeReserve();
-        
     }
-    
+
+    private static void selectionMenu(ReserveSystem reservesystem) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        String option;
+
+        System.out.println("""
+                           Escoja que opción desea realizar:
+                           
+                           1. Ingresar una reserva
+                           2. Ver una reserva
+                           """);
+        option = sc.next();
+
+        switch (option) {
+            case "1" -> {
+                reservesystem.makeReserve();
+            }
+
+            case "2" -> {
+                System.out.println("Función pendiente.");
+                selectionMenu(reservesystem);
+            }
+
+            default -> {
+                System.out.println("Opcion no valida.");
+                selectionMenu(reservesystem);
+
+            }
+
+        }
+    }
+
 }

@@ -47,8 +47,6 @@ public class ReserveSystem {
                 i++;
             }
         }
-        
-        System.out.println(reserves[1].getDate());
     }
 
     public void makeReserve() throws IOException {
