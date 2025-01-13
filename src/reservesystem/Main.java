@@ -34,6 +34,7 @@ public class Main {
                            
                            1. Ingresar una reserva
                            2. Ver una reserva
+                           3. Mostrar reservas
                            """);
         option = sc.next();
 
@@ -45,6 +46,10 @@ public class Main {
             case "2" -> {
                 System.out.println("Función pendiente.");
                 selectionMenu(reservesystem);
+            }
+            
+            case "3" -> {
+                reservesystem.showReserves();
             }
 
             default -> {

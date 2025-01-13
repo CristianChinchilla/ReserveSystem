@@ -30,7 +30,10 @@ class Reserve {
         this.startTime = startTime;
         this.endTime = endTime;
     }
-
+    /**
+     * Return the date of the reserve
+     * @return date
+     */
     public String getDate() {
         return date;
     }

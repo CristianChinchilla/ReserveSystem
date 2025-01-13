@@ -20,6 +20,7 @@ public class ReserveSystem {
 
     Scanner sc = new Scanner(System.in);
     File file = new File("Reserves.txt");
+    private static Reserve[] reserves;
 
     public void loadReserves() throws IOException {
         int count = 0;
@@ -30,7 +31,7 @@ public class ReserveSystem {
             }
         }
         
-        Reserve[] reserves = new Reserve[count];
+        reserves = new Reserve[count];
         
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
         
@@ -50,27 +51,41 @@ public class ReserveSystem {
     }
 
     public void makeReserve() throws IOException {
-        String data;
+        String date;
+        String user;
+        String id;
+        String startTime;
+        String endTime;
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file.getPath(), true))) {
 
             System.out.print("Ingrese la fecha de la reserva: ");
-            data = sc.next();
-            bw.write(data + ",");
+            date = sc.next();
+            bw.write(date + ",");
             System.out.print("Ingrese el nombre de usuario: ");
-            data = sc.next();
-            bw.write(data + ",");
+            user = sc.next();
+            bw.write(user + ",");
             System.out.print("Ingrese el id: ");
-            data = sc.next();
-            bw.write(data + ",");
+            id = sc.next();
+            bw.write(id + ",");
             System.out.print("Ingrese la hora de inicio: ");
-            data = sc.next();
-            bw.write(data + ",");
+            startTime = sc.next();
+            bw.write(startTime + ",");
             System.out.print("Ingrese la hora de fin: ");
-            data = sc.next();
-            bw.write(data);
+            endTime = sc.next();
+            bw.write(endTime);
             bw.newLine();
 
+        }
+    }
+    
+    public void showReserves() {
+        
+        System.out.println(reserves.length);
+        
+        for (int i = 0; i < reserves.length; i++) {
+            
+            System.out.println(reserves[i].getDate());
         }
     }
 }
