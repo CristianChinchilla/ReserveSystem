@@ -35,12 +35,14 @@ public class Main {
                            1. Ingresar una reserva
                            2. Ver una reserva
                            3. Mostrar reservas
+                           6. Salir
                            """);
         option = sc.next();
 
         switch (option) {
             case "1" -> {
                 reservesystem.makeReserve();
+                selectionMenu(reservesystem);
             }
 
             case "2" -> {
@@ -50,6 +52,11 @@ public class Main {
             
             case "3" -> {
                 reservesystem.showReserves();
+                selectionMenu(reservesystem);
+            }
+            
+            case "6" -> {
+                System.exit(0);
             }
 
             default -> {

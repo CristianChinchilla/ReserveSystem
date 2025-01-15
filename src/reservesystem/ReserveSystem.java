@@ -20,18 +20,19 @@ public class ReserveSystem {
 
     Scanner sc = new Scanner(System.in);
     File file = new File("Reserves.txt");
-    private static Reserve[] reserves;
+    private static Reserve[] reserves = new Reserve[1000];
+    int currentReserve = 0;
 
     public void loadReserves() throws IOException {
         int count = 0;
-        int i = 0;
+        currentReserve = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
             while ((br.readLine()) != null) {
                 count++;
             }
         }
         
-        reserves = new Reserve[count];
+        //reserves = new Reserve[count];
         
         try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
         
@@ -44,8 +45,8 @@ public class ReserveSystem {
                         data[2].toUpperCase().trim(),
                         data[3].toUpperCase().trim(),
                         data[4].toUpperCase().trim());
-                reserves[i] = reserve;
-                i++;
+                reserves[currentReserve] = reserve;
+                currentReserve++;
             }
         }
     }
@@ -56,34 +57,33 @@ public class ReserveSystem {
         String id;
         String startTime;
         String endTime;
+        
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file.getPath(), true))) {
 
             System.out.print("Ingrese la fecha de la reserva: ");
             date = sc.next();
-            bw.write(date + ",");
             System.out.print("Ingrese el nombre de usuario: ");
             user = sc.next();
-            bw.write(user + ",");
             System.out.print("Ingrese el id: ");
             id = sc.next();
-            bw.write(id + ",");
             System.out.print("Ingrese la hora de inicio: ");
             startTime = sc.next();
-            bw.write(startTime + ",");
             System.out.print("Ingrese la hora de fin: ");
             endTime = sc.next();
-            bw.write(endTime);
-            bw.newLine();
+            
+            Reserve reserve = new Reserve(date, user, id, startTime, endTime);
+            reserves[currentReserve] = reserve;
+            currentReserve++;
 
         }
     }
     
     public void showReserves() {
         
-        System.out.println(reserves.length);
+        System.out.println(currentReserve);
         
-        for (int i = 0; i < reserves.length; i++) {
+        for (int i = 0; i < currentReserve; i++) {
             
             System.out.println(reserves[i].getDate());
         }
