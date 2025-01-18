@@ -4,6 +4,7 @@
  */
 package reservesystem;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -49,13 +50,14 @@ public class Main {
                 System.out.println("Función pendiente.");
                 selectionMenu(reservesystem);
             }
-            
+
             case "3" -> {
                 reservesystem.showReserves();
                 selectionMenu(reservesystem);
             }
-            
+
             case "6" -> {
+                reservesystem.saveReserves();
                 System.exit(0);
             }
 
