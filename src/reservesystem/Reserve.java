@@ -26,6 +26,7 @@ class Reserve {
 
     public Reserve(String date, String user, String id, String startTime, String endTime) {
         this.date = date;
+        this.user = user;
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;

@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class ReserveSystem {
 
     Scanner sc = new Scanner(System.in);
-    File file = new File("Reserves2.txt");
+    File file = new File("Reserves.txt");
     private static Reserve[] reserves = new Reserve[1000];
     int currentReserve = 0;
 
@@ -92,11 +92,11 @@ public class ReserveSystem {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file.getPath()))) {
 
             for (int i = 0; i < currentReserve; i++) {
-                bw.write(reserves[0].getDate() + ",");
-                bw.write(reserves[0].getUser() + ",");
-                bw.write(reserves[0].getId() + ",");
-                bw.write(reserves[0].getStartTime() + ",");
-                bw.write(reserves[0].getEndTime());
+                bw.write(reserves[i].getDate() + ",");
+                bw.write(reserves[i].getUser() + ",");
+                bw.write(reserves[i].getId() + ",");
+                bw.write(reserves[i].getStartTime() + ",");
+                bw.write(reserves[i].getEndTime());
                 bw.newLine();
             }
         }
