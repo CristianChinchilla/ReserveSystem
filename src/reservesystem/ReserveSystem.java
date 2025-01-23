@@ -19,21 +19,21 @@ import java.util.Scanner;
 public class ReserveSystem {
 
     Scanner sc = new Scanner(System.in);
-    File file = new File("Reserves.txt");
-    private static Reserve[] reserves = new Reserve[1000];
+    File reservesFile = new File("Reserves.txt");
+    private static final Reserve[] reserves = new Reserve[1000];
     int currentReserve = 0;
 
     public void loadReserves() throws IOException {
         int count = 0;
         currentReserve = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(reservesFile.getPath()))) {
             while ((br.readLine()) != null) {
                 count++;
             }
         }
 
         //reserves = new Reserve[count];
-        try (BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(reservesFile.getPath()))) {
 
             String line;
             while ((line = br.readLine()) != null) {
@@ -89,7 +89,7 @@ public class ReserveSystem {
 
     public void saveReserves() throws IOException {
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file.getPath()))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(reservesFile.getPath()))) {
 
             for (int i = 0; i < currentReserve; i++) {
                 bw.write(reserves[i].getDate() + ",");
