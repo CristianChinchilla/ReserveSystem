@@ -5,8 +5,10 @@
 package reservesystem;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Scanner;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
@@ -70,5 +72,29 @@ public class SportSpaceAdministrator {
         currentSpace++;
 
     }
+    
+    public void showSportSpaces() {
+        for (int i = 0; i < currentSpace; i++) {
+            System.out.print(sportSpaces[i].getName() + " | ");
+            System.out.print(sportSpaces[i].getId() + " | ");
+            System.out.print(sportSpaces[i].getType() + " | ");
+            System.out.println(sportSpaces[i].getCapacity() + " | ");
+        }
+    }
 
+    public void saveSportSpaces() throws IOException {
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(sportSpacesFile.getPath()))) {
+        
+            for (int i = 0; i < currentSpace; i++) {
+                bw.write(sportSpaces[i].getName() + ",");
+                bw.write(sportSpaces[i].getId() + ",");
+                bw.write(sportSpaces[i].getType() + ",");
+                bw.write(sportSpaces[i].getCapacity());
+                bw.newLine();
+            }
+            
+        }
+        
+    }
 }

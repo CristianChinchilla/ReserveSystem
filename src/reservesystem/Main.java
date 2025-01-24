@@ -22,8 +22,8 @@ public class Main {
         sportSpaceAdmin.loadSportSpaces();
         reservesystem.loadReserves();
 
-        selectionMenu(reservesystem, sportSpaceAdmin);
-
+        //selectionMenu(reservesystem, sportSpaceAdmin);
+        adminMenu(sportSpaceAdmin);
         //reservesystem.makeReserve();
     }
     
@@ -105,7 +105,7 @@ public class Main {
         }
     }
 
-    private static void adminMenu(SportSpaceAdministrator sportSpaceAdmin) {
+    private static void adminMenu(SportSpaceAdministrator sportSpaceAdmin) throws IOException {
         Scanner sc = new Scanner(System.in);
         String option;
         
@@ -134,10 +134,12 @@ public class Main {
             }
             
             case "3" -> {
-                System.out.println("Funcion pendiente");
+                sportSpaceAdmin.showSportSpaces();
+                adminMenu(sportSpaceAdmin);
             }
             
             case "6" -> {
+                sportSpaceAdmin.saveSportSpaces();
                 System.exit(0);
             }
         }
