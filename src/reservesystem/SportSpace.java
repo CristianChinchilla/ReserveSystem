@@ -13,9 +13,9 @@ class SportSpace {
     private String name;
     private String id;
     private String type;
-    private int capacity;
+    private String capacity;
 
-    public SportSpace(String name, String id, String type, int capacity) {
+    public SportSpace(String name, String id, String type, String capacity) {
         this.name = name;
         this.id = id;
         this.type = type;
@@ -46,11 +46,11 @@ class SportSpace {
         this.type = type;
     }
 
-    public int getCapacity() {
+    public String getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
 

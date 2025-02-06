@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 import java.io.IOException;
-import static java.lang.Integer.parseInt;
 
 /**
  *
@@ -43,7 +42,7 @@ public class SportSpaceAdministrator {
                         data[0].toUpperCase().trim(),
                         data[1].toUpperCase().trim(),
                         data[2].toUpperCase().trim(),
-                        parseInt(data[3].toUpperCase().trim()));
+                        data[3].toUpperCase().trim());
                 sportSpaces[currentSpace] = sportSpace;
                 currentSpace++;
             }
@@ -56,36 +55,36 @@ public class SportSpaceAdministrator {
         String name;
         String id;
         String type;
-        int capacity = 0;
+        String capacity;
 
         System.out.print("Ingrese el nombre del espacio deportivo: ");
-        name = sc.next();
+        name = sc.nextLine().replace(" ", "_");
         System.out.print("Ingrese el ID del espacio deportivo: ");
-        id = sc.next();
+        id = sc.nextLine();
         System.out.print("Ingrese el tipo de espacio deportivo: ");
-        type = sc.next();
+        type = sc.nextLine();
         System.out.print("Ingrese la capacidad del espacio deportivo: ");
-        sc.nextInt();
+        capacity = sc.nextLine();
 
         SportSpace sportSpace = new SportSpace(name, id, type, capacity);
         sportSpaces[currentSpace] = sportSpace;
         currentSpace++;
 
     }
-    
+
     public void showSportSpaces() {
         for (int i = 0; i < currentSpace; i++) {
-            System.out.print(sportSpaces[i].getName() + " | ");
+            System.out.print(sportSpaces[i].getName().replace("_", " ") + " | ");
             System.out.print(sportSpaces[i].getId() + " | ");
-            System.out.print(sportSpaces[i].getType() + " | ");
+            System.out.print(sportSpaces[i].getType().replace("_", " ") + " | ");
             System.out.println(sportSpaces[i].getCapacity() + " | ");
         }
     }
 
     public void saveSportSpaces() throws IOException {
-        
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(sportSpacesFile.getPath()))) {
-        
+
             for (int i = 0; i < currentSpace; i++) {
                 bw.write(sportSpaces[i].getName() + ",");
                 bw.write(sportSpaces[i].getId() + ",");
@@ -93,8 +92,38 @@ public class SportSpaceAdministrator {
                 bw.write(sportSpaces[i].getCapacity());
                 bw.newLine();
             }
-            
+
+        }
+
+    }
+
+    public void searchSpace() {
+        String searchedID;
+        Boolean found;
+        int foundPosition = 0;
+        int i = 0;
+
+        System.out.print("Ingrese el ID del espacio que desea buscar: ");
+        searchedID = sc.nextLine();
+        found = false;
+
+        while (i < currentSpace) {
+            if (searchedID.equals(sportSpaces[i].getId())) {
+                found = true;
+                foundPosition = i;
+            }
+            i++;
         }
         
+        if (found == true) {
+            System.out.println("Espacio encontrado: ");
+            
+            System.out.print(sportSpaces[foundPosition].getName().replace("_", " ") + " | ");
+            System.out.print(sportSpaces[foundPosition].getId() + " | ");
+            System.out.print(sportSpaces[foundPosition].getType().replace("_", " ") + " | ");
+            System.out.println(sportSpaces[foundPosition].getCapacity() + " | ");
+        } else {
+            System.out.println("La ID que ingreso no coincide con ningun espacio guardado.");
+        }
     }
 }

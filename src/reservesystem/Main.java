@@ -130,7 +130,8 @@ public class Main {
             }
             
             case "2" -> {
-                System.out.println("Funcion pendiente");
+                sportSpaceAdmin.searchSpace();
+                adminMenu(sportSpaceAdmin);
             }
             
             case "3" -> {
@@ -141,6 +142,11 @@ public class Main {
             case "6" -> {
                 sportSpaceAdmin.saveSportSpaces();
                 System.exit(0);
+            }
+            
+            default -> {
+                System.out.println("Opcion no valida");
+                adminMenu(sportSpaceAdmin);
             }
         }
         
