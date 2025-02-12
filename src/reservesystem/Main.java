@@ -23,14 +23,15 @@ public class Main {
         reservesystem.loadReserves();
 
         //selectionMenu(reservesystem, sportSpaceAdmin);
-        adminMenu(sportSpaceAdmin);
+        //adminMenu(sportSpaceAdmin);
         //reservesystem.makeReserve();
+        userMenu(reservesystem);
     }
-    
+
     private static void selectionMenu(ReserveSystem reservesystem, SportSpaceAdministrator sportSpaceAdmin) throws IOException {
         Scanner sc = new Scanner(System.in);
         String option;
-        
+
         System.out.print("""
                          --------------------------
                          Ingrese el tipo de usurio:
@@ -40,13 +41,13 @@ public class Main {
                          --------------------------
                          """);
         option = sc.next();
-        
+
         switch (option) {
-            
+
             case "1" -> {
                 userMenu(reservesystem);
             }
-            
+
             case "2" -> {
                 adminMenu(sportSpaceAdmin);
             }
@@ -82,7 +83,7 @@ public class Main {
             }
 
             case "2" -> {
-                System.out.println("Función pendiente.");
+                reservesystem.searchReserve();
                 userMenu(reservesystem);
             }
 
@@ -108,7 +109,7 @@ public class Main {
     private static void adminMenu(SportSpaceAdministrator sportSpaceAdmin) throws IOException {
         Scanner sc = new Scanner(System.in);
         String option;
-        
+
         System.out.print("""
                          --------------------------------------
                          Escoja que opcion desea realizar:
@@ -121,35 +122,35 @@ public class Main {
                          --------------------------------------
                          """);
         option = sc.next();
-        
+
         switch (option) {
-        
+
             case "1" -> {
                 sportSpaceAdmin.makeSportSpace();
                 adminMenu(sportSpaceAdmin);
             }
-            
+
             case "2" -> {
                 sportSpaceAdmin.searchSpace();
                 adminMenu(sportSpaceAdmin);
             }
-            
+
             case "3" -> {
                 sportSpaceAdmin.showSportSpaces();
                 adminMenu(sportSpaceAdmin);
             }
-            
+
             case "6" -> {
                 sportSpaceAdmin.saveSportSpaces();
                 System.exit(0);
             }
-            
+
             default -> {
                 System.out.println("Opcion no valida");
                 adminMenu(sportSpaceAdmin);
             }
         }
-        
+
     }
 
 }

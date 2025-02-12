@@ -4,8 +4,6 @@
  */
 package reservesystem;
 
-import java.util.Date;
-
 /**
  *
  * @author cchin
@@ -21,15 +19,18 @@ class Reserve {
     private String startTime;
 
     private String endTime;
+    
+    private String reserveNumber;
 
     private String status;
 
-    public Reserve(String date, String user, String id, String startTime, String endTime) {
+    public Reserve(String date, String user, String id, String startTime, String endTime, String reserveNumber) {
         this.date = date;
         this.user = user;
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.reserveNumber = reserveNumber;
     }
     /**
      * Return the date of the reserve
@@ -83,6 +84,12 @@ class Reserve {
         this.status = status;
     }
     
+    public String getReserveNumber() {
+        return reserveNumber;
+    }
     
+    public void setReserveNumber(String reserveNumber) {
+        this.reserveNumber = reserveNumber;
+    }
 
 }

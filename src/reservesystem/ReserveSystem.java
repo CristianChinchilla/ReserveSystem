@@ -21,11 +21,11 @@ public class ReserveSystem {
     Scanner sc = new Scanner(System.in);
     File reservesFile = new File("Reserves.txt");
     private static final Reserve[] reserves = new Reserve[1000];
-    int currentReserve = 0;
+    int currentReserve = 000;
 
     public void loadReserves() throws IOException {
         int count = 0;
-        currentReserve = 0;
+        currentReserve = 000;
         try (BufferedReader br = new BufferedReader(new FileReader(reservesFile.getPath()))) {
             while ((br.readLine()) != null) {
                 count++;
@@ -43,7 +43,8 @@ public class ReserveSystem {
                         data[1].toUpperCase().trim(),
                         data[2].toUpperCase().trim(),
                         data[3].toUpperCase().trim(),
-                        data[4].toUpperCase().trim());
+                        data[4].toUpperCase().trim(),
+                        data[5].toUpperCase().trim());
                 reserves[currentReserve] = reserve;
                 currentReserve++;
             }
@@ -56,6 +57,7 @@ public class ReserveSystem {
         String userID;
         String startTime;
         String endTime;
+        String reserveNumber;
 
         System.out.print("Ingrese la fecha de la reserva: ");
         date = sc.next();
@@ -67,8 +69,11 @@ public class ReserveSystem {
         startTime = sc.next();
         System.out.print("Ingrese la hora de fin: ");
         endTime = sc.next();
+        
+        reserveNumber = Integer.toString((currentReserve+1));
+        System.out.println("Numero de reserva: " + (currentReserve+1));
 
-        Reserve reserve = new Reserve(date, user, userID, startTime, endTime);
+        Reserve reserve = new Reserve(date, user, userID, startTime, endTime, reserveNumber);
         reserves[currentReserve] = reserve;
         currentReserve++;
 
@@ -82,7 +87,8 @@ public class ReserveSystem {
             System.out.print(reserves[i].getDate() + " | ");
             System.out.print(reserves[i].getUser() + " | ");
             System.out.print(reserves[i].getId() + " | ");
-            System.out.println("De " + reserves[i].getStartTime() + " a " + reserves[i].getEndTime());
+            System.out.print("De " + reserves[i].getStartTime() + " a " + reserves[i].getEndTime() + " | ");
+            System.out.println("Numero de reserva: " + reserves[i].getReserveNumber());
 
         }
     }
@@ -96,9 +102,43 @@ public class ReserveSystem {
                 bw.write(reserves[i].getUser() + ",");
                 bw.write(reserves[i].getId() + ",");
                 bw.write(reserves[i].getStartTime() + ",");
-                bw.write(reserves[i].getEndTime());
+                bw.write(reserves[i].getEndTime() + ",");
+                bw.write(reserves[i].getReserveNumber());
                 bw.newLine();
             }
         }
+    }
+    
+    public void searchReserve() {
+        String searchedReserveNumber;
+        boolean found;
+        int foundPosition = 0;
+        int i = 0;
+        
+        System.out.println("Ingrese el numero de la reserva: ");
+        searchedReserveNumber = sc.nextLine();
+        found = false;
+        
+        while (i < currentReserve) {
+            if (searchedReserveNumber.equals(reserves[i].getReserveNumber())) {
+                found = true;
+                foundPosition = i;
+            }
+            i++;
+        }
+        
+        if (found == true) {
+            System.out.println("Reserva encontrada: ");
+            
+            System.out.print(reserves[foundPosition].getDate() + " | ");
+            System.out.print(reserves[foundPosition].getUser() + " | ");
+            System.out.print(reserves[foundPosition].getId() + " | ");
+            System.out.print("De " + reserves[foundPosition].getStartTime() + " a " + reserves[foundPosition].getEndTime() + " | ");
+            System.out.println("Numero de reserva: "  + reserves[foundPosition].getReserveNumber());
+        } else {
+            System.out.println("El numero de reserva que ingreso no coincide con ninguna reserva guardada.");
+        }
+        
+        
     }
 }
