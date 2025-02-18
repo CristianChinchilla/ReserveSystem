@@ -14,12 +14,14 @@ class SportSpace {
     private String id;
     private String type;
     private String capacity;
+    private boolean available;
 
-    public SportSpace(String name, String id, String type, String capacity) {
+    public SportSpace(String name, String id, String type, String capacity, boolean available) {
         this.name = name;
         this.id = id;
         this.type = type;
         this.capacity = capacity;
+        this.available = available;
     }
 
     public String getName() {
@@ -54,4 +56,11 @@ class SportSpace {
         this.capacity = capacity;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 }

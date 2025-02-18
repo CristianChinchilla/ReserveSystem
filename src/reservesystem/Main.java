@@ -25,10 +25,10 @@ public class Main {
         //selectionMenu(reservesystem, sportSpaceAdmin);
         //adminMenu(sportSpaceAdmin);
         //reservesystem.makeReserve();
-        userMenu(reservesystem);
+        userMenu(reservesystem, sportSpaceAdmin);
     }
 
-    private static void selectionMenu(ReserveSystem reservesystem, SportSpaceAdministrator sportSpaceAdmin) throws IOException {
+    private static void selectionMenu(ReserveSystem reserveSystem, SportSpaceAdministrator sportSpaceAdmin) throws IOException {
         Scanner sc = new Scanner(System.in);
         String option;
 
@@ -45,7 +45,7 @@ public class Main {
         switch (option) {
 
             case "1" -> {
-                userMenu(reservesystem);
+                userMenu(reserveSystem, sportSpaceAdmin);
             }
 
             case "2" -> {
@@ -54,12 +54,13 @@ public class Main {
 
             default -> {
                 System.out.println("Opcion no valida.");
-                selectionMenu(reservesystem, sportSpaceAdmin);
+                selectionMenu(reserveSystem, sportSpaceAdmin);
             }
+
         }
     }
 
-    private static void userMenu(ReserveSystem reservesystem) throws IOException {
+    private static void userMenu(ReserveSystem reservesystem, SportSpaceAdministrator sportSpaceAdmin) throws IOException {
         Scanner sc = new Scanner(System.in);
         String option;
 
@@ -71,6 +72,8 @@ public class Main {
                            2. Ver una reserva
                            3. Mostrar reservas
                          
+                           4. Ver espacios deportivos disponibles
+                         
                            6. Guardar y salir
                            ---------------------------------
                            """);
@@ -79,17 +82,22 @@ public class Main {
         switch (option) {
             case "1" -> {
                 reservesystem.makeReserve();
-                userMenu(reservesystem);
+                userMenu(reservesystem, sportSpaceAdmin);
             }
 
             case "2" -> {
                 reservesystem.searchReserve();
-                userMenu(reservesystem);
+                userMenu(reservesystem, sportSpaceAdmin);
             }
 
             case "3" -> {
                 reservesystem.showReserves();
-                userMenu(reservesystem);
+                userMenu(reservesystem, sportSpaceAdmin);
+            }
+            
+            case "4" -> {
+                sportSpaceAdmin.showAvailableSpaces();
+                userMenu(reservesystem, sportSpaceAdmin);
             }
 
             case "6" -> {
@@ -99,9 +107,10 @@ public class Main {
 
             default -> {
                 System.out.println("Opcion no valida.");
-                userMenu(reservesystem);
+                userMenu(reservesystem, sportSpaceAdmin);
 
             }
+
 
         }
     }

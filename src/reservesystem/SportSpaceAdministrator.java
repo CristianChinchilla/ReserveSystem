@@ -42,7 +42,8 @@ public class SportSpaceAdministrator {
                         data[0].toUpperCase().trim(),
                         data[1].toUpperCase().trim(),
                         data[2].toUpperCase().trim(),
-                        data[3].toUpperCase().trim());
+                        data[3].toUpperCase().trim(),
+                        Boolean.parseBoolean(data[4]));
                 sportSpaces[currentSpace] = sportSpace;
                 currentSpace++;
             }
@@ -56,6 +57,7 @@ public class SportSpaceAdministrator {
         String id;
         String type;
         String capacity;
+        boolean available;
 
         System.out.print("Ingrese el nombre del espacio deportivo: ");
         name = sc.nextLine().replace(" ", "_");
@@ -65,8 +67,10 @@ public class SportSpaceAdministrator {
         type = sc.nextLine();
         System.out.print("Ingrese la capacidad del espacio deportivo: ");
         capacity = sc.nextLine();
+        
+        available = true;
 
-        SportSpace sportSpace = new SportSpace(name, id, type, capacity);
+        SportSpace sportSpace = new SportSpace(name, id, type, capacity, available);
         sportSpaces[currentSpace] = sportSpace;
         currentSpace++;
 
@@ -77,7 +81,8 @@ public class SportSpaceAdministrator {
             System.out.print(sportSpaces[i].getName().replace("_", " ") + " | ");
             System.out.print(sportSpaces[i].getId() + " | ");
             System.out.print(sportSpaces[i].getType().replace("_", " ") + " | ");
-            System.out.println(sportSpaces[i].getCapacity() + " | ");
+            System.out.print(sportSpaces[i].getCapacity() + " | ");
+            System.out.println(sportSpaces[i].isAvailable() + " | ");
         }
     }
 
@@ -89,7 +94,8 @@ public class SportSpaceAdministrator {
                 bw.write(sportSpaces[i].getName() + ",");
                 bw.write(sportSpaces[i].getId() + ",");
                 bw.write(sportSpaces[i].getType() + ",");
-                bw.write(sportSpaces[i].getCapacity());
+                bw.write(sportSpaces[i].getCapacity() + ",");
+                bw.write(Boolean.toString(sportSpaces[i].isAvailable()));
                 bw.newLine();
             }
 
@@ -121,9 +127,23 @@ public class SportSpaceAdministrator {
             System.out.print(sportSpaces[foundPosition].getName().replace("_", " ") + " | ");
             System.out.print(sportSpaces[foundPosition].getId() + " | ");
             System.out.print(sportSpaces[foundPosition].getType().replace("_", " ") + " | ");
-            System.out.println(sportSpaces[foundPosition].getCapacity() + " | ");
+            System.out.print(sportSpaces[foundPosition].getCapacity() + " | ");
+            System.out.println(sportSpaces[foundPosition].isAvailable() + " | ");
         } else {
             System.out.println("La ID que ingreso no coincide con ningun espacio guardado.");
+        }
+    }
+    
+    public void showAvailableSpaces() {
+        
+        for (int i = 0; i < currentSpace; i++) {
+            if (sportSpaces[i].isAvailable()){
+                System.out.print(sportSpaces[i].getName().replace("_", " ") + " | ");
+                System.out.print(sportSpaces[i].getId() + " | ");
+                System.out.print(sportSpaces[i].getType().replace("_", " ") + " | ");
+                System.out.print(sportSpaces[i].getCapacity() + " | ");
+                System.out.println(sportSpaces[i].isAvailable() + " | ");
+            }
         }
     }
 }
