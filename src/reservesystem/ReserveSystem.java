@@ -71,7 +71,7 @@ public class ReserveSystem {
         endTime = sc.next();
         
         reserveNumber = Integer.toString((currentReserve+1));
-        System.out.println("Numero de reserva: " + (currentReserve+1));
+        System.out.println("Numero de reserva: #" + (currentReserve+1));
 
         Reserve reserve = new Reserve(date, user, userID, startTime, endTime, reserveNumber);
         reserves[currentReserve] = reserve;
@@ -88,7 +88,7 @@ public class ReserveSystem {
             System.out.print(reserves[i].getUser() + " | ");
             System.out.print(reserves[i].getId() + " | ");
             System.out.print("De " + reserves[i].getStartTime() + " a " + reserves[i].getEndTime() + " | ");
-            System.out.println("Numero de reserva: " + reserves[i].getReserveNumber());
+            System.out.println("Numero de reserva: #" + reserves[i].getReserveNumber());
 
         }
     }
@@ -134,7 +134,7 @@ public class ReserveSystem {
             System.out.print(reserves[foundPosition].getUser() + " | ");
             System.out.print(reserves[foundPosition].getId() + " | ");
             System.out.print("De " + reserves[foundPosition].getStartTime() + " a " + reserves[foundPosition].getEndTime() + " | ");
-            System.out.println("Numero de reserva: "  + reserves[foundPosition].getReserveNumber());
+            System.out.println("Numero de reserva: #"  + reserves[foundPosition].getReserveNumber());
         } else {
             System.out.println("El numero de reserva que ingreso no coincide con ninguna reserva guardada.");
         }

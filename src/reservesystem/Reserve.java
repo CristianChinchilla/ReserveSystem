@@ -23,7 +23,7 @@ class Reserve {
     private String reserveNumber;
 
     private String status;
-
+    
     public Reserve(String date, String user, String id, String startTime, String endTime, String reserveNumber) {
         this.date = date;
         this.user = user;

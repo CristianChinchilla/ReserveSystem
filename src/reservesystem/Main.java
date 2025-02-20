@@ -15,6 +15,7 @@ public class Main {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
         SportSpaceAdministrator sportSpaceAdmin = new SportSpaceAdministrator();
@@ -23,9 +24,9 @@ public class Main {
         reservesystem.loadReserves();
 
         //selectionMenu(reservesystem, sportSpaceAdmin);
-        //adminMenu(sportSpaceAdmin);
+        adminMenu(sportSpaceAdmin);
         //reservesystem.makeReserve();
-        userMenu(reservesystem, sportSpaceAdmin);
+        //userMenu(reservesystem, sportSpaceAdmin);
     }
 
     private static void selectionMenu(ReserveSystem reserveSystem, SportSpaceAdministrator sportSpaceAdmin) throws IOException {
